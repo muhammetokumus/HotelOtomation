@@ -26,14 +26,14 @@ namespace AspUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult SignIn()
+        public IActionResult SignUp()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SignIn(SignInViewModel p)
+        public async Task<IActionResult> SignUp(SignUpViewModel p)
         {
             if (ModelState.IsValid)
             {

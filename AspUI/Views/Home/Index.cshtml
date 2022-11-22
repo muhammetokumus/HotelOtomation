@@ -8,45 +8,6 @@
     List<int> ids = new List<int>();
 }
 <title>Home</title>
-@if(User.IsInRole("Admin"))
-{
-    <div class="row">
-    <div class="col-md-12">
-            
-        
-           <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Id</th> 
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>isFull</th>
-                        <th>Description</th>
-                        <th>Daily Price</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td><img src="/src/img/hotelimg/@item.Image" /></td>
-                            <td>@item.Name</td>
-                            <td>@item.City</td>
-                            <td><input type="checkbox" asp-for="@item.IsFull" class="from-control float-end form-check-input" disabled/></td>
-                            <td>@item.Description</td>
-                            <td>@item.DailyPrice</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-    </div>
-</div>
-}
-else
-{
     <div class="bg-primary p-4 mx-auto ">
         <div class="w-100 mx-auto">
             <form asp-action="Hotels">
@@ -111,5 +72,4 @@ else
             }
         }
     </div>
-}
 

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AspUI.Models
 {
-    public class SignInViewModel
+    public class SignUpViewModel
     {
         [Required(ErrorMessage = "This field cannot be left empty!")]
         [StringLength(15, MinimumLength = 3, ErrorMessage = "The name must be a minimum of 3 characters and a maximum of 20 characters!")]
