@@ -1,0 +1,50 @@
+﻿@using Entities.Concrete
+@model Hotel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<title>Create Hotel</title>
+<form method="post" class="w-50 card container my-5">
+    <h4 class="p-3">Create Hotel</h4>
+    <hr />
+    <div class="form-group p-3">
+        <label>Name:</label>
+        <input type="text" asp-for="Name" class="from-control float-end"/>
+    </div>
+    <hr /> 
+    <div class="form-group p-3">
+        <label>City:</label>
+        <input type="text" asp-for="City" class="from-control float-end"/>
+    </div>
+    <hr />
+    <div class="form-group p-3">
+        <label>IsFull:</label>
+        <input type="text" asp-for="IsFull" class="from-control float-end"/>
+    </div>
+    <hr />
+    <div class="form-group p-3">
+        <label>Description:</label>
+         <textarea type="text" asp-for="Description" class="from-control float-end" rows="10" cols="50"></textarea>
+    </div>
+    <hr />
+    <div class="form-group p-3">
+        <label>Image:</label>
+        <input type="text" asp-for="Image" class="from-control float-end"/>
+    </div>
+    <hr />
+    <div class="form-group p-3">
+        <label>Detail Image:</label>
+        <input type="text" asp-for="DetailImage" class="from-control float-end"/>
+    </div>
+    <hr />
+    <div class="form-group p-3">
+        <label>Daily Price:</label>
+        <input type="text" asp-for="DailyPrice" class="from-control float-end"/>
+    </div>
+    <hr />
+
+    <button type="submit" class="btn btn-primary float-end m-3">Create Hotel</button>
+</form>
+

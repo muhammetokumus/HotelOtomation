@@ -1,0 +1,24 @@
+﻿@foreach (var item in Model)
+{
+    <div class="col-md-3 my-2 mx-2">
+        <div class="col card">
+            <img src="/src/img/hotelimg/@item.Image" class="card-img-top my-2" alt="...">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@item.Name</li>
+                    <li class="list-group-item">@item.City / Türkiye</li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </li>
+                </ul>
+            <div class="card-body">
+                <p class="float-start">@item.DailyPrice ₺</p>
+                <a href="/home/details/@item.Id" class="card-link float-end"><button 
+                    class="btn btn-primary float-end" type="submit">Details</button>
+                </a>
+            </div>
+        </div>
+    </div>
+}

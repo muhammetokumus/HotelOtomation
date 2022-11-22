@@ -1,0 +1,52 @@
+﻿@using Entities.Concrete
+@model IEnumerable<Hotel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Hotels</title>
+<div class="row">
+    <form method="get" class="w-25">
+        <div class="card my-3 " style="width: 18rem;">
+            <div class="form-check p-2">
+                <label class="form-label my-2">Price</label>
+                <div>
+                    <input name="minPrice" class="w-25" type="text" placeholder="MIN" value="@ViewBag.MinPrice">
+                    <input name="maxPrice" class="w-25" type="text" placeholder="MAX" value="@ViewBag.MaxPrice">
+                    <hr>
+                </div>
+                <label class="form-label my-2">City</label>
+                <div class="form-check">
+                    <input name="isIstanbul" class="form-check-input slectOne" type="checkbox" checked="@ViewBag.IsIstanbul">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        İstanbul
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input name="isIzmir" class="form-check-input slectOne" type="checkbox" checked="@ViewBag.IsIzmir">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        İzmir
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input name="isEskisehir" class="form-check-input slectOne" type="checkbox" checked="@ViewBag.IsEskisehir">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Eskişehir
+                    </label>
+                </div>
+                <hr>
+                <button class="btn btn-primary float-end">Search</button>
+            </div>
+        </div>
+    </form>
+    <div class="row w-75">
+        @Html.Partial("_HotelList",Model)
+    </div>
+</div>
+<script>
+   $(document).ready(function () {
+        $('.slectOne').on('change', function () {
+            $('.slectOne').not(this).prop('checked', false);
+        });
+    });
+</script>

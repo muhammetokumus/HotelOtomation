@@ -1,0 +1,56 @@
+﻿@using Entities.Concrete
+@model Hotel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>@Model.Name</title>
+    <div class="row m-2">
+        <div class="col-md-2">
+            <img src="/src/img/hotelimg/@Model.Image" alt="" class="img-fluid rounded-3 w-100">
+        </div>
+        <div class="col-md-10">
+            <h1>@Model.Name</h1>
+            <div class="mt-1">
+                <p class="lead fs-6">
+                @Model.Description
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <div class="float-end">
+                
+                @if( User.Identity.IsAuthenticated != true)
+                {
+                    <button class="btn btn-danger" disabled>
+                        <i class="bi bi-dash-lg"></i>
+                        <span class="badge">Login</span>
+                    </button>
+                }
+                else if(Model.IsFull == true)
+                {
+                    <button class="btn btn-danger" disabled>
+                        <i class="bi bi-dash-lg"></i>
+                        <span class="badge">Hotel is Full</span>
+                    </button>
+                }
+                else
+                {
+                    <form action="https://www.trivago.com.tr/tr" target="_blank">
+                        <input type="submit" value="Make Reservation" class="btn text-light btn-success"/>
+                    </form>
+                }
+            </div>
+            <div class="mb-1 float-end">
+                <span class="badge text-danger fs-4 fw-bold rounded">@Model.DailyPrice ₺</span>
+            </div>
+        </div>
+    </div>
+
+

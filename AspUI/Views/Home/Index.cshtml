@@ -1,0 +1,115 @@
+﻿@using Entities.Concrete
+@model IEnumerable<Hotel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Random rnd = new Random();
+    int value = 0;
+    List<int> ids = new List<int>();
+}
+<title>Home</title>
+@if(User.IsInRole("Admin"))
+{
+    <div class="row">
+    <div class="col-md-12">
+            
+        
+           <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th> 
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>isFull</th>
+                        <th>Description</th>
+                        <th>Daily Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td><img src="/src/img/hotelimg/@item.Image" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.City</td>
+                            <td><input type="checkbox" asp-for="@item.IsFull" class="from-control float-end form-check-input" disabled/></td>
+                            <td>@item.Description</td>
+                            <td>@item.DailyPrice</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+</div>
+}
+else
+{
+    <div class="bg-primary p-4 mx-auto ">
+        <div class="w-100 mx-auto">
+            <form asp-action="Hotels">
+                <div class="row ms-5 ps-5">
+                    <div class="col">
+                        <i class="fa-solid fa-city"></i>
+                        <input name="city" type="text" class="form-control" placeholder="City">
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="date" id="check-in" class="form-control">
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="date" id="check-out" class="form-control">
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-person"></i>
+                        <input type="text" class="form-control" placeholder="Person">
+                    </div>
+                    <div class="col">
+                        <br>
+                        <input type="submit" class="btn btn-success" value="Search">
+                    </div>
+                </div>
+            </form>
+        <br>
+        </div>
+    </div>
+    <div class="row w-100 justify-content-center">
+        @while(value < 5)
+        {
+            Hotel hotel = Model.FirstOrDefault(x => x.Id == rnd.Next(1, Model.Count()));
+            @if(hotel != null && ids.Contains(hotel.Id) == false)
+            {
+                ids.Add(hotel.Id);
+                <div class="col-md-2 my-2 mx-2">
+                    <div class="col card">
+                        <img src="/src/img/hotelimg/@hotel.Image" class="card-img-top my-2" alt="...">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@hotel.Name</li>
+                                <li class="list-group-item">@hotel.City / Türkiye</li>
+                                <li class="list-group-item">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li class="list-group-item">
+                                    <p class="float-start">Daily Price</p>
+                                    <p class="float-end text-success">@hotel.DailyPrice ₺</p> 
+                                </li>
+                            </ul>
+                        <div class="card-body">
+                            <a href="/home/details/@hotel.Id" class="card-link float-end"><button 
+                            class="btn btn-primary float-end" type="submit">Details</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                value++;
+            }
+        }
+    </div>
+}
+
